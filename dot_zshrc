@@ -1,7 +1,6 @@
 export PATH=$HOME/bin:/usr/local/bin:$PATH
 export PATH=$HOME/.local/bin:$PATH
 
-
 # Path to your oh-my-zsh installation.
 export ZSH="/home/fade0329/.oh-my-zsh" 
 ###############
@@ -13,7 +12,7 @@ alias sz="source ~/.zshrc"
 alias ze="vim ~/.zshrc"
 alias ve="vim ~/.config/nvim/init.vim"
 alias chezupdate="chezmoi add ~/.zshrc && chezmoi add ~/.config/nvim && chezmoi add ~/.config/alacritty && chezmoi add ~/.config/starship.toml"
-alias chezpush="chezmoi cd && git push -u origin main && exit"
+alias chezpush="chezmoi cd && git branch -M main && git push origin main && exit"
 
 ###############
 ### ANTIGEN ###
