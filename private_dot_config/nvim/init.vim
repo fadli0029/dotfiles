@@ -15,6 +15,7 @@ set cmdheight=2
 set updatetime=300
 set shortmess+=c
 " end of sets for nvim
+set conceallevel=2
 set nocompatible
 set background=dark
 set smartindent
@@ -78,6 +79,8 @@ source ~/.config/nvim/plugins/viminstantmarkdown.vim
 source ~/.config/nvim/plugins/nerdtree.vim
 source ~/.config/nvim/plugins/ctrlp.vim
 source ~/.config/nvim/plugins/floaterm.vim
+source ~/.config/nvim/plugins/pandocsyntax.vim
+source ~/.config/nvim/plugins/markdown.vim
 
 call plug#end()
 doautocmd User PlugLoaded
