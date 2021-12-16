@@ -12,7 +12,9 @@ alias sz="source ~/.zshrc"
 alias ze="vim ~/.zshrc"
 alias ve="vim ~/.config/nvim/init.vim"
 alias chezupdate="chezmoi add ~/.zshrc && chezmoi add ~/.config/nvim && chezmoi add ~/.config/alacritty && chezmoi add ~/.config/starship.toml"
-alias chezpush="chezmoi cd && git branch -M main && git push origin main && exit"
+alias jl="jupyter-lab"
+alias brpy="cd ~/brainstorm/Python/"
+alias brcpp="cd ~/brainstorm/Cpp/"
 
 ###############
 ### ANTIGEN ###
@@ -38,3 +40,6 @@ fpath+=${ZDOTDIR:-~}/.zsh_functions
 # starship prompt
 eval "$(starship init zsh)"
 eval $(thefuck --alias fuck)
+
+# for ros2 sourcing
+source /opt/ros/galactic/setup.zsh 
