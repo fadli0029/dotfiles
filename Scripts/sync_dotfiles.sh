@@ -50,7 +50,8 @@ mkdir -p "$DEST_DIR"
 echo "Syncing dotfiles to $DEST_DIR..."
 for item in "${DOTFILES[@]}"; do
     if [[ -d "$item" ]]; then
-        cp -r "$item" "$DEST_DIR/"
+        # cp -r "$item" "$DEST_DIR/"
+        rsync -av --exclude ".git" "$item" "$DEST_DIR/"
     elif [[ -f "$item" ]]; then
         cp "$item" "$DEST_DIR/"
     else
