@@ -7,7 +7,7 @@ default_msg="[ADD] more problems"
 commit_msg="${1:-$default_msg}"
 
 # Required path
-required_path="/home/magomed_fadliov/Projects/leetcode"
+required_path="$HOME/Projects/leetcode"
 
 # Check current directory
 if [[ "$PWD" != "$required_path" ]]; then

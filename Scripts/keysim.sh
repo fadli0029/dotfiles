@@ -1,2 +1,2 @@
 #!/bin/bash
-rustyvibes $HOME/rustyvibes_soundpack/cherrymx-red-abs -v 100 &
+rustyvibes $HOME/ThirdParties/misc/rustyvibes_soundpack/cherrymx-red-abs -v 100 &
