@@ -1,0 +1,350 @@
+;==========================================================
+;
+; THIS IS AN EXAMPLE CONFIGURATION FILE!
+; IT IS NOT SUPPOSED TO WORK OUT OF THE BOX SINCE IS CONTAINS
+; SETTINGS THAT ARE SPECIFIC TO THE MACHINE WHICH WAS USED
+; TO GENERATE IT.
+; Please refer to the web documentation hosted at:
+; https://github.com/polybar/polybar#configuration
+; and
+; https://github.com/polybar/polybar/wiki/Configuration
+; if you want to automatically generate one for you.
+;
+;==========================================================
+;
+;
+;   ██████╗  ██████╗ ██╗  ██╗   ██╗██████╗  █████╗ ██████╗
+;   ██╔══██╗██╔═══██╗██║  ╚██╗ ██╔╝██╔══██╗██╔══██╗██╔══██╗
+;   ██████╔╝██║   ██║██║   ╚████╔╝ ██████╔╝███████║██████╔╝
+;   ██╔═══╝ ██║   ██║██║    ╚██╔╝  ██╔══██╗██╔══██║██╔══██╗
+;   ██║     ╚██████╔╝███████╗██║   ██████╔╝██║  ██║██║  ██║
+;   ╚═╝      ╚═════╝ ╚══════╝╚═╝   ╚═════╝ ╚═╝  ╚═╝╚═╝  ╚═╝
+;
+;
+;   To learn more about how to configure Polybar
+;   go to https://github.com/polybar/polybar
+;
+;   The README contains a lot of information
+;
+;==========================================================
+
+[colors]
+; based on ~/wallpapers/wall3.jpg generated color palette: https://coolors.co/3ea8cf-4c79b3-080f2f-edb890-884977-081640-681235
+; light_blue  = #3EA8CF
+; ; dark_blue = #080F2F
+; dark_blue = #1A2A5F
+; medium_blue = #4C79B3
+; blue = #081640
+; peach = #EDB890
+; light_purple = #884977
+; dark_purple = #681235
+; green = #32CD32
+; red = #bf0000
+; white = #fffde4
+; transparent = #00000000
+
+light_blue  = #87CEEB
+dark_blue = #0A1A2F
+medium_blue = #ADD8E6
+blue = #4B5A72
+peach = #E4A275
+light_purple = #DA70D6
+dark_purple = #AA55FF
+green = #55FF55
+red = #FF0000
+white = #EDE3D5
+transparent = #00000000
+
+
+[bar/main_portrait]
+monitor = ${env:MONITOR:}
+
+width = 100%
+height = 1%
+
+; rounded corner radius
+radius = 5.0
+
+; colorings
+background = ${colors.dark_blue}
+foreground = ${colors.light_blue}
+
+; line settings
+line-color = ${colors.light_purple}
+
+; border settings
+border-left-size = 0.6%
+border-right-size = 0.6%
+border-top-size = 0.4%
+border-bottom-size = 0.1%
+border-color = ${color.transparent}
+
+
+; fonts
+font-0 = "JetBrains Mono Nerd Font:style=Bold:size=10;2"
+font-1 = "Noto Color Emoji:scale=10;2"
+font-2 = "nvidia_logo:style=Regular:size=15:antialias=true;2"
+
+fixed-center = true
+
+cursor-click = pointer
+cursor-scroll = ns-resize
+
+modules-right = cpu memory gpu battery wifi vpn
+modules-center = i3
+modules-left = time date robotics_books_folder canvas_ucsd
+
+module-margin-left = 1
+module-margin-right = 1
+
+padding-left = 2%
+padding-right = 2%
+
+[bar/main_landscape]
+monitor = ${env:MONITOR:}
+
+width = 100%
+height = 3%
+
+; rounded corner radius
+radius = 5.0
+
+; colorings
+background = ${colors.dark_blue}
+foreground = ${colors.light_blue}
+
+; line settings
+line-color = ${colors.light_purple}
+
+; border settings
+border-left-size = 0.35%
+border-right-size = 0.35%
+border-top-size = 0.65%
+border-bottom-size = 0.1%
+border-color = ${color.transparent}
+
+; fonts
+font-0 = "JetBrains Mono Nerd Font:style=Bold:size=10;2"
+font-1 = "Noto Color Emoji:scale=10;2"
+font-2 = "nvidia_logo:style=Regular:size=12:antialias=true;2"
+
+fixed-center = true
+
+cursor-click = pointer
+cursor-scroll = ns-resize
+
+modules-right = cpu gpu memory battery
+modules-center = i3
+modules-left = time date wifi vpn
+
+module-margin-left = 1
+module-margin-right = 1
+
+padding-left = 2%
+padding-right = 2%
+
+; wm-restack = true
+; override-redirect = true
+
+[module/xwindow]
+type = internal/xwindow
+; temporary solution, implement this in the future: https://github.com/MateoNitro550/xxxwindowPolybarModule
+
+; label-empty = Empty
+; label-empty-foreground = ${colors.dark_blue}
+
+[module/i3]
+type = internal/i3
+format = <label-state> <label-mode>
+index-sort = true
+
+; Only show workspaces on the same output as the bar
+pin-workspaces = true
+
+show-urgent = true
+
+label-mode-padding = 2
+label-mode-foreground = ${colors.red}
+label-mode-background = ${colors.red}
+
+; focused = Active workspace on focused monitor
+label-focused = %index%
+label-focused-background = ${colors.blue}
+label-focused-underline= ${colors.light_blue}
+label-focused-padding = 1
+
+; unfocused = Inactive workspace on any monitor
+label-unfocused = %index%
+label-unfocused-padding = 1
+
+; visible = Active workspace on unfocused monitor
+label-visible = %index%
+label-visible-background = ${self.label-focused-background}
+label-visible-underline = ${self.label-focused-underline}
+label-visible-padding = ${self.label-focused-padding}
+
+; urgent = Workspace with urgency hint set
+label-urgent = %index%
+label-urgent-background = ${colors.red}
+label-urgent-padding = 2
+
+; Separator in between workspaces
+; label-separator = |
+
+[module/gpu]
+type = custom/script
+exec = ~/.config/polybar/scripts/gpu.sh
+interval = 2
+format = %{F#76B900} %{F-}<label>
+
+[module/weekly_schedule]
+type = custom/script
+label = 📓 %output%
+exec = ~/.config/polybar/scripts/weekly_schedule_disp.sh
+interval = 2
+click-left = ~/.config/polybar/scripts/weekly_schedule.sh &
+
+[module/robotics_books_folder]
+type = custom/script
+label = 📓 %output%
+exec = ~/.config/polybar/scripts/robotics_books_folder_disp.sh
+interval = 2
+click-left = ~/.config/polybar/scripts/robotics_books_folder.sh &
+
+[module/canvas_ucsd]
+type = custom/script
+label = ✏️ %output%
+exec = ~/.config/polybar/scripts/canvas_ucsd_disp.sh
+interval = 2
+click-left = ~/.config/polybar/scripts/canvas_ucsd.sh &
+
+[module/daily_schedule]
+type = custom/script
+label = 📑 %output%
+exec = ~/.config/polybar/scripts/daily_schedule_disp.sh
+interval = 2
+click-left = ~/.config/polybar/scripts/daily_schedule.sh &
+
+[module/anki_app]
+type = custom/script
+label = 📖 %output%
+exec = ~/.config/polybar/scripts/anki_app_disp.sh
+interval = 2
+click-left = ~/.config/polybar/scripts/anki_app.sh &
+
+[module/vpn]
+type = custom/script
+; label = 👻 VPN: %output%
+label = %{F#F8F8FF}󰊠 %{F-} VPN: %output%
+exec = ~/.config/rofi/scripts/rofi-nordvpn.sh -s
+interval = 2
+click-left = ~/.config/rofi/scripts/rofi-nordvpn.sh &
+
+[module/wifi]
+type = internal/network
+
+interface = wlp9s0
+interval = 2
+speed-unit = ''
+
+format-connected = <ramp-signal>  <label-connected>
+label-connected = "%essid%"
+label-connected-foreground = ${colors.light_blue}
+
+format-disconnected = <label-disconnected>
+label-disconnected = "󰤮  NO WIFI!"
+label-disconnected-foreground = ${colors.red}
+
+; %{F#DA70D6} %{F-}
+ramp-signal-0 = "%{F#FF6347}󰤯%{F-}"
+ramp-signal-1 = "%{F#FFA07A}󰤟%{F-}"
+ramp-signal-2 = "%{F#FFD700}󰤢%{F-}"
+ramp-signal-3 = "%{F#28A428}󰤥%{F-}"
+ramp-signal-4 = "%{F#55FF55}󰤨%{F-}"
+; ramp-signal-5 = "😁"
+
+click-left = gnome-control-center wifi
+
+[module/cpu]
+type = internal/cpu
+
+interval = 2
+format = <label>
+format-foreground = ${colors.light_blue}
+label = "%{F#B0B0B0} %{F-} %percentage%%"
+
+warn-percentage = 80
+label-warn = "❗%{F#B0B0B0} %{F-} %percentage%%"
+
+[module/memory]
+type = custom/script
+label = %{F#D8BFD8} %{F-} %output%
+exec = free -h | awk 'FNR == 2 {print $3"B / "$2"B"; exit}'
+interval = 2
+format-padding = 1
+click-left = alacritty -e htop
+
+[module/time]
+type = internal/date
+
+interval = 1
+time = %H:%M:%S
+format = <label>
+label = "%{F#F8F8FF}󱑆%{F-}  %time%"
+label-foreground = ${colors.light_blue}
+
+[module/date]
+type = internal/date
+;#FFD700
+interval = 2
+date =" %a, %b %d"
+format = <label>
+label = "%{F#DA70D6} %{F-}%date%"
+label-foreground = ${colors.light_blue}
+
+[module/text]
+type = custom/text
+
+content = "👦 @fade0329"
+
+[module/battery]
+type = internal/battery
+battery = BAT0
+adapter = AC
+full-at = 99
+label-low = "  LOW!"
+label-full = "  Full"
+
+format-charging = <animation-charging> <label-charging>
+
+format-discharging = <animation-discharging> <label-discharging>
+
+format-full-foreground = ${colors.green}
+format-full-prefix-foreground = ${colors.dark_blue}
+format-low-prefix-foreground = ${colors.light_purple}
+
+animation-charging-0 = " "
+animation-charging-1 = " "
+animation-charging-2 = " "
+animation-charging-3 = " "
+animation-charging-4 = " "
+animation-charging-foreground = ${colors.green}
+animation-charging-framerate = 750
+
+animation-discharging-0 = " "
+animation-discharging-1 = " "
+animation-discharging-2 = " "
+animation-discharging-3 = " "
+animation-discharging-4 = " "
+animation-discharging-foreground = ${colors.light_purple}
+animation-discharging-framerate = 750
+
+[module/placeholder]
+type = custom/text
+
+content = " "
+
+[settings]
+screenchange-reload = true
+
+; vim:ft=dosini
