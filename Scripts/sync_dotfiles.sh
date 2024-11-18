@@ -47,7 +47,7 @@ done
 mkdir -p "$DEST_DIR"
 
 # Sync files and directories
-echo "Syncing dotfiles to $DEST_DIR..."
+echo "===> Syncing dotfiles to $DEST_DIR..."
 for item in "${DOTFILES[@]}"; do
     if [[ -d "$item" ]]; then
         # cp -r "$item" "$DEST_DIR/"
@@ -58,7 +58,7 @@ for item in "${DOTFILES[@]}"; do
         echo "Warning: $item does not exist, skipping..."
     fi
 done
-echo "Dotfiles synced successfully."
+echo "===> Dotfiles synced successfully."
 
 # Automatically commit and push changes
 cd "$DEST_DIR" || { echo "Error: Unable to navigate to $DEST_DIR."; exit 1; }
@@ -67,8 +67,8 @@ cd "$DEST_DIR" || { echo "Error: Unable to navigate to $DEST_DIR."; exit 1; }
 echo ""
 echo ""
 if [[ -n $(git status --porcelain) ]]; then
-    echo "Changes detected. Committing and pushing to branch '$branch_name'..."
+    echo "===> Changes detected. Committing and pushing to branch '$branch_name'..."
     $HOME/Scripts/commit.sh -d "$commit_msg" -b "$branch_name"
 else
-    echo "No changes detected. Nothing to commit."
+    echo "===> No changes detected. Nothing to commit."
 fi
