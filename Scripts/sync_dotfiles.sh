@@ -63,6 +63,14 @@ echo "Dotfiles synced successfully."
 # Automatically commit and push changes
 cd "$DEST_DIR" || { echo "Error: Unable to navigate to $DEST_DIR."; exit 1; }
 
-# Call the commit-and-push script
-echo "Committing and pushing changes to branch '$branch_name'..."
-$HOME/Scripts/commit.sh -d "$commit_msg" -b "$branch_name"
+# Check for changes in the git repository
+if [[ -n $(git status --porcelain) ]]; then
+    echo "Changes detected. Committing and pushing to branch '$branch_name'..."
+    $HOME/Scripts/commit.sh -d "$commit_msg" -b "$branch_name"
+else
+    echo "No changes detected. Nothing to commit."
+fi
+
+# # Call the commit-and-push script
+# echo "Committing and pushing changes to branch '$branch_name'..."
+# $HOME/Scripts/commit.sh -d "$commit_msg" -b "$branch_name"
